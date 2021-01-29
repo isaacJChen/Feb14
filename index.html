@@ -1,1 +1,26 @@
-<d>hello world</d>
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Will you be my girlfriend?</h1>
+<button onclick="showYES()" type="button">YES!</button>
+<button onclick="showNO()" type="button">NO!</button>
+
+<div id="gif" class="tenor-gif-embed" data-postid="14222255" data-share-method="host" data-width="0%" data-aspect-ratio="1.2087912087912087">
+    <a href="https://tenor.com/view/cute-love-kiss-gif-14222255">Cute Love GIF</a> from <a href="https://tenor.com/search/cute-gifs">Cute GIFs</a>
+</div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+<div style="display: none;" id="sure">Are you sure?????? I think you misclicked.</div>
+
+<script>
+    function showYES() {
+        document.getElementById('gif').style = "width:100%;position:relative;";
+    }
+
+    function showNO() {
+        document.getElementById('sure').style = "display: block;";
+    }
+</script>
+
+</body>
+</html>
