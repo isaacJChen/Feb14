@@ -51,13 +51,12 @@
 </table>
 
 <div style="text-align: center; margin-top: 10%;">
-    <button onclick="showYES()" type="button">YES!</button>
+    <button onclick="confirmYES()" type="button">YES!</button>
     <button onclick="showNO()" type="button">NO!</button>
 </div>
 
 <div style="display: none;" id="sure">Are you sure?????? I think you misclicked.</div>
 <img src="pwease.jpg" alt="pwease" width="100%" style="margin-top: 10%;">
-
 
 <script>
     function showYES() {
@@ -66,6 +65,14 @@
 
     function showNO() {
         document.getElementById('sure').style = "display: block; text-align: center;";
+    }
+
+    function confirmYES() {
+       if (confirm('Are you sure? I will be yours forever and ever and ever!')) {
+           showYES()
+       } else {
+           return false;
+       }
     }
 </script>
 
