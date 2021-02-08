@@ -16,23 +16,28 @@
       text-align: left;
       padding: 8px;
     }
-
-    .fader {
-        opacity: 1;
-        animation: fade 3s linear;
-    }
-
-
-    @keyframes fade {
-        50% { opacity: 1 }
-        100% { opacity: 0 }
-    }
 </style>
 <body style="overflow: hidden;">
-    
 
 <h1 class="fw-bold" style="text-align: center;">Will you be my girlfriend?</h1>
-<div class="alert alert-danger fader" role="alert" style="display: none;" id="sure">I think you misclicked. Try again?</div>
+<div class="alert alert-danger" role="alert" style="display: none;" id="sure">I think you misclicked, try again.</div>
+
+<div id="popup" style="display: none; z-index: -1;">
+    <div style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; background-color: #000000; opacity: 50%;"></div>
+    <div class="position-absolute top-50 start-50 translate-middle" style="background-color: #ffffff; width: 100%; text-align: center;">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">No Return Policy</h5>
+              <p class="card-text">Are you sure? You cannot return me to the cat dinosaur shelter!</p>
+              <div class="row justify-content-evenly">
+                <a class="btn btn-secondary col-4" id="cancelButton" onclick="cancel()">Cancel</a>
+                <a class="btn btn-primary col-4" id="okButton" onclick="showYES()">Ok</a>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
 
 
 <div id="gif" class="tenor-gif-embed" data-postid="14222255" data-share-method="host" data-width="0%" data-aspect-ratio="1.2087912087912087">
@@ -67,7 +72,7 @@
 </table>
 
 <div class="row justify-content-evenly" style="margin-top: 5%;">
-    <button class="btn btn-primary col-4" onclick="confirmYES()" type="button">YES!</button>
+    <button class="btn btn-primary col-4" id="yesButton" onclick="confirmYES()" type="button">YES!</button>
     <button class="btn btn-danger col-4" id="noButton" onclick="showNO()" type="button">NO!</button>
 </div>
 
@@ -80,19 +85,28 @@
 
     function showNO() {
         document.getElementById('sure').style = "position: absolute; top: 0; left: 0; width: 100%; text-align: center";
+        document.getElementById('sure').innerText = "I think you misclicked, try again in 3";
         document.getElementById("noButton").disabled = true;
+        document.getElementById("yesButton").disabled = true;
+        setTimeout(() => {
+            document.getElementById('sure').innerText = "I think you misclicked, try again in 2";
+        }, 1000)
+        setTimeout(() => {
+            document.getElementById('sure').innerText = "I think you misclicked, try again in 1";
+        }, 2000)
         setTimeout(() => { 
             document.getElementById('sure').style = "display: none"; 
             document.getElementById("noButton").disabled = false;
-        }, 2990)
+            document.getElementById("yesButton").disabled = false;
+        }, 3000)
     }
 
     function confirmYES() {
-       if (confirm('Are you sure? You cannot return me to the cat dinosaur shelter!')) {
-           showYES()
-       } else {
-           return false;
-       }
+        document.getElementById('popup').style = undefined;
+    }
+
+    function cancel() {
+        document.getElementById('popup').style = "display: none;"
     }
 </script>
 
