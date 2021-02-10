@@ -83,28 +83,31 @@
 
     function showNO() {
         document.getElementById('sure').style = "position: absolute; top: 0; left: 0; width: 100%; text-align: center";
-        document.getElementById('sure').innerText = "I think you misclicked, try again in 5";
         document.getElementById("noButton").disabled = true;
         document.getElementById("yesButton").disabled = true;
-        setTimeout(() => {
-            document.getElementById('sure').innerText = "I think you misclicked, try again in 4";
-        }, 1000)
-        setTimeout(() => {
-            document.getElementById('sure').innerText = "I think you misclicked, try again in 3";
-        }, 2000)
-        setTimeout(() => {
-            document.getElementById('sure').innerText = "I think you misclicked, try again in 2";
-        }, 3000)
-        setTimeout(() => {
-            document.getElementById('sure').innerText = "I think you misclicked, try again in 1";
-        }, 4000)
+
+        document.getElementById('sure').innerText = "I think you misclicked, try again in 5";
+        countDown(5);
+    }
+
+    function countDown(seconds) {
+        document.getElementById('sure').innerText = "I think you misclicked, try again in " + seconds;
+        let countDown = seconds - 1;
+        while (countDown > 0) {
+            const text = "I think you misclicked, try again in " + countDown;
+            setTimeout(() => {
+                document.getElementById('sure').innerText = text
+            }, ((seconds - countDown) * 1000))
+            countDown--
+        }
+
         setTimeout(() => { 
             document.getElementById('sure').style = "display: none"; 
             document.getElementById("noButton").disabled = false;
             document.getElementById("noButton").innerText = "YES!";
             document.getElementById("noButton").onclick = confirmYES;
             document.getElementById("yesButton").disabled = false;
-        }, 5000)
+        }, seconds * 1000)
     }
 
     function confirmYES() {
