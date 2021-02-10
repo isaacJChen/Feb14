@@ -103,9 +103,9 @@
 
         setTimeout(() => { 
             document.getElementById('sure').style = "display: none"; 
-            document.getElementById("noButton").disabled = false;
             document.getElementById("noButton").innerText = "YES!";
             document.getElementById("noButton").onclick = confirmYES;
+            document.getElementById("noButton").disabled = false;
             document.getElementById("yesButton").disabled = false;
         }, seconds * 1000)
     }
